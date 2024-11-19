@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+:root 
+{
+    /* Colors */
+    --background-color: #0c0c0c;
+    --box-color: #030303;
+    --icon-color: linear-gradient(90deg, #8400ff, #690ebe, #0d45be, #0051ff);
+    --text-shadow: rgba(0, 0, 0, 0.2);
+}
+
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-color);
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+    height: 100vh;
+    perspective: 1500px;
+}
+
+/* Box */
+
+.box 
+{
+    position: relative;
+    width: 300px;
+    height: 400px;
+    background: transparent;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-in-out;
+}
+
+.box .back 
+{
+    position: absolute;
+    background-color: #222;
+    color: wheat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transform: rotateY(180deg);
+    transition: transform 0.5s ease-in-out;
+}
+
+.box::after 
+{
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: conic-gradient(transparent, transparent, transparent, #8400ff);
+    animation: animate 4s linear infinite;
+    animation-delay: -2s;
+}
+
+.box::before 
+{
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: conic-gradient(transparent, transparent, transparent, #0051ff);
+    animation: animate 4s linear infinite;
+}
+
+@keyframes animate 
+{
+    0%
+    {
+        transform: rotate(0deg);
+    }
+
+    100%
+    {
+        transform: rotate(360deg);
+    }
+}
+
+.box span 
+{
+    position: absolute;
+    inset: 3px;
+    border-radius: 20px;
+    background: var(--box-color);
+    z-index: 1;
+}
+
+.box i 
+{
+    position: relative;
+    z-index: 2;
+    font-size: 10em;
+    color: transparent;
+    -webkit-text-stroke: 3px transparent;
+    background: var(--icon-color);
+    text-shadow: 2px 2px 4px var(--text-shadow);
+    background-size: 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientRotate 8s linear infinite;
+    transition: transform 0.5s ease-in-out;
+}
+
+.box:hover i 
+{
+    transform: scale(1.1);
+    transition: transform 0.5s ease-in-out;
+}
+
+@keyframes gradientRotate 
+{
+    0%
+    {
+        background-position: 0% 50%;
+    }
+
+    50%
+    {
+        background-position: 100% 50%;
+    }
+
+    100% 
+    {
+        background-position: 0% 50%;
+    }
+}
